@@ -1,0 +1,6 @@
+C:\Users\Robin\Documents\AAAProjects\S_tiger_Finnare\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.exe.config
+C:\Users\Robin\Documents\AAAProjects\S_tiger_Finnare\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.exe
+C:\Users\Robin\Documents\AAAProjects\S_tiger_Finnare\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.pdb
+C:\Users\Robin\Documents\AAAProjects\S_tiger_Finnare\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.csprojResolveAssemblyReference.cache
+C:\Users\Robin\Documents\AAAProjects\S_tiger_Finnare\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.exe
+C:\Users\Robin\Documents\AAAProjects\S_tiger_Finnare\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.pdb
