@@ -10,43 +10,19 @@ namespace S_tiger_Finnare
     {
         static void Main(string[] args)
         {
-            Console.Write("tiger Finnare ><><\n");
-            int[,] map = new int[10,10];
-            List<Node> open = new List<Node>();
-            List<Node> closed = new List<Node>();
-            int goalX, goalY;
-            int startX, startY;
-            Random rnd = new Random();
+            Console.Write("Stigfinnaren\n");
 
-            goalX = rnd.Next(10);
-            goalY = rnd.Next(10);
-            startX = rnd.Next(10);
-            startY = rnd.Next(10);
+            //Node start = new Node(0, 0, true, 'x');
+            //Node end = new Node(1, 1, true, 'y');
 
-            for (int i = 0; i < 10; i++) {
-                for (int k = 0; k < 10; k++) {
-                    map[i,k] = rnd.Next(0,2);
-                    if (goalX == i && goalY == k) {
-                        Console.Write("X");
-                    } else if (startX == i && startY == k) {
-                        Console.Write("Y");
-                    } else {
-                        Console.Write("{0}", map[i, k]);
-                    }
-                }
-                Console.Write("\n");
-            }
+            Map map = new Map(6);
+            map.generateMap();
+            map.printMap();
+
+            map.searchBreadth();
+
             Console.Read();
         }
     }
 
-    class Node {
-        public int X, Y;
-        public Node(/*Tomt*/) {
-            //hu
-            //etiska varden
-            X = 0;
-            Y = 0;
-        }
-    }
 }
