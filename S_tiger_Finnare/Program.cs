@@ -17,10 +17,11 @@ namespace S_tiger_Finnare
 
             Map map = new Map(6);
             map.generateMap();
+            
+
+            map.searchGreedy();
+
             map.printMap();
-
-            map.searchBreadth();
-
             Console.Read();
         }
     }

@@ -31,10 +31,11 @@ namespace S_tiger_Finnare
             this.graphic = graphic;
         }
 
-        public int getHeurestic(Node end)
+        public int getDistance(Node end)
         {
             // Heurestic kommer användas i A*
             // Den här heuristiska metoden heter Manhattan och är den vanligaste
+
             return Math.Abs(end.x - this.x) + Math.Abs(end.y - this.y);
         }
 
