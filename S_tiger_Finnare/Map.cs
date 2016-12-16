@@ -42,6 +42,7 @@ namespace S_tiger_Finnare
         {
             open.Add(start);
             open[0].herustic = open[0].getDistance(end);
+            open[0].visited = true;
 
             while (open.Count > 0)
             {
@@ -51,8 +52,11 @@ namespace S_tiger_Finnare
                 
                 for (int i = 0; i < open.Count(); i++)
                 {
-                    if (open[i].herustic < lowestH) 
+                    if (open[i].herustic < lowestH)
+                    {
                         pointer = open[i];
+                        lowestH = open[i].herustic;
+                    }
                 }
 
 
@@ -64,6 +68,7 @@ namespace S_tiger_Finnare
                         open.Add(map[pointer.x, pointer.y + 1]);
                         open[open.Count() - 1].parent = pointer;
                         open[open.Count() - 1].herustic = open[open.Count() - 1].getDistance(end);
+                        open[open.Count() - 1].visited = true;
                     }
                 }
                 // Under
@@ -74,6 +79,7 @@ namespace S_tiger_Finnare
                         open.Add(map[pointer.x, pointer.y - 1]);
                         open[open.Count() - 1].parent = pointer;
                         open[open.Count() - 1].herustic = open[open.Count() - 1].getDistance(end);
+                        open[open.Count() - 1].visited = true;
                     }
                 }
                 // Höger
@@ -84,6 +90,7 @@ namespace S_tiger_Finnare
                         open.Add(map[pointer.x + 1, pointer.y]);
                         open[open.Count() - 1].parent = pointer;
                         open[open.Count() - 1].herustic = open[open.Count() - 1].getDistance(end);
+                        open[open.Count() - 1].visited = true;
                     }
                 }
                 // Vänster
@@ -94,11 +101,13 @@ namespace S_tiger_Finnare
                         open.Add(map[pointer.x - 1, pointer.y]);
                         open[open.Count() - 1].parent = pointer;
                         open[open.Count() - 1].herustic = open[open.Count() - 1].getDistance(end);
+                        open[open.Count() - 1].visited = true;
                     }
                 }
 
                 closed.Add(pointer);
                 open.Remove(pointer);
+                
 
                 foreach (Node n in open)
                 {
@@ -123,9 +132,9 @@ namespace S_tiger_Finnare
             {
                 for (int k = 0; k < size; k++)
                 {
-                    int value = rnd.Next(0, 2);
-                    if (value == 1) map[i, k] = new Node(i,k, true, '.');   // Skapar en node som är walkable
-                    else map[i, k] = new Node(i, k, false, '#');            // Skapar en node som INTE är walkable 
+                    int value = rnd.Next(0, 3);
+                    if (value <= 1) map[k, i] = new Node(k,i, true, '.');   // Skapar en node som är walkable
+                    else map[k, i] = new Node(k, i, false, '#');            // Skapar en node som INTE är walkable 
                 }
             }
 
@@ -144,22 +153,18 @@ namespace S_tiger_Finnare
 
             // Tilldele start och end till map
             map[start.x, start.y] = start;
-            map[end.y, end.y] = end;
+            map[end.x, end.y] = end;
         }
 
 
         public bool findPath(Node n)
         {
-            int i = 0;
             Node pointer = end;
             while (pointer.parent != null)
             {
                 if (pointer == n)
                     return true;
-
-                i++;
                 pointer = pointer.parent;
-                if (i > 100) { break; }
             }
             return false;
         }
@@ -172,13 +177,18 @@ namespace S_tiger_Finnare
             {
                 for (int k = 0; k < size; k++)
                 {
-                    if (findPath(map[i, k]))
+                    if (map[k, i].visited)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    if (findPath(map[k, i]))
                     {
                         Console.BackgroundColor = ConsoleColor.Blue;
                         Console.ForegroundColor = ConsoleColor.White;
                     }
 
-                    Console.Write("{0}", map[i, k].ToString());
+                    Console.Write("{0}", map[k, i].ToString());
                     
                     Console.ResetColor();
                 }

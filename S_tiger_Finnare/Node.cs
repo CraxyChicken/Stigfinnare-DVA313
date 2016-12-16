@@ -12,6 +12,7 @@ namespace S_tiger_Finnare
         public int herustic, moveCost, total;
         public bool walkable;
         public char graphic;
+        public bool visited;
 
         // Vi måste veta vilken node vi kommer ifrån, och detta görs genom en parent node
         public Node parent;
@@ -22,6 +23,7 @@ namespace S_tiger_Finnare
             y = 0;
             herustic = 0;
             moveCost = 1;
+            visited = false;
         }
         public Node(int x, int y, bool walkable, char graphic)
         {
@@ -29,6 +31,7 @@ namespace S_tiger_Finnare
             if(y < 0) this.y = 0; else this.y = y;
             this.walkable = walkable;
             this.graphic = graphic;
+            visited = false;
         }
 
         public int getDistance(Node end)

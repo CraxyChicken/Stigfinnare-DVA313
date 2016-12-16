@@ -10,3 +10,9 @@ C:\Users\Robin\Desktop\Labbar\AI\Stigfinnare-DVA313\S_tiger_Finnare\obj\Debug\S_
 C:\Users\Robin\Desktop\Labbar\AI\Stigfinnare-DVA313\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.exe
 C:\Users\Robin\Desktop\Labbar\AI\Stigfinnare-DVA313\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.pdb
 C:\Users\Robin\Desktop\Labbar\AI\Stigfinnare-DVA313\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.csprojResolveAssemblyReference.cache
+C:\Users\Robin\Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.exe.config
+C:\Users\Robin\Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.exe
+C:\Users\Robin\Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.pdb
+C:\Users\Robin\Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.exe
+C:\Users\Robin\Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.pdb
+C:\Users\Robin\Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.csprojResolveAssemblyReference.cache
