@@ -16,3 +16,9 @@ C:\Users\Robin\Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\obj\Debug\S_t
 C:\Users\Robin\Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.exe
 C:\Users\Robin\Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.pdb
 C:\Users\Robin\Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.csprojResolveAssemblyReference.cache
+H:\My Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.exe.config
+H:\My Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.exe
+H:\My Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.pdb
+H:\My Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.exe
+H:\My Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\bin\Debug\S_tiger_Finnare.pdb
+H:\My Documents\GitHub\Stigfinnare-DVA313\S_tiger_Finnare\obj\Debug\S_tiger_Finnare.csprojResolveAssemblyReference.cache

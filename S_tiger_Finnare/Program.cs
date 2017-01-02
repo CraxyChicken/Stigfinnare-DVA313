@@ -15,12 +15,19 @@ namespace S_tiger_Finnare
             //Node start = new Node(0, 0, true, 'x');
             //Node end = new Node(1, 1, true, 'y');
 
-            Map map = new Map(100);
+            Map map = new Map(15);
             map.generateMap();
 
             map.searchGreedy();
 
             map.printMap();
+
+            map.reset();
+
+            map.searchAStar();
+
+            map.printMap();
+
             Console.Read();
             Console.Read();
         }

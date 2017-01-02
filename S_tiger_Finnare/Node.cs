@@ -36,10 +36,20 @@ namespace S_tiger_Finnare
 
         public int getDistance(Node end)
         {
-            // Heurestic kommer användas i A*
+            // Heurestic kommer användas i Greedy
             // Den här heuristiska metoden heter Manhattan och är den vanligaste
 
             return Math.Abs(end.x - this.x) + Math.Abs(end.y - this.y);
+        }
+
+        public int getDistanceAndDistance(Node end, Node start)
+        {
+            // Heurestic kommer användas i A*
+            // Den här heuristiska metoden heter Manhattan och är den vanligaste
+
+            int toEnd = Math.Abs(end.x - this.x) + Math.Abs(end.y - this.y);
+            int toStart = Math.Abs(start.x - this.x) + Math.Abs(start.y - this.y);
+            return toEnd + toStart;
         }
 
         public int getTotalCost()

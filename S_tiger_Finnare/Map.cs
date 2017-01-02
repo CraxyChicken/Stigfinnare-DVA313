@@ -60,32 +60,10 @@ namespace S_tiger_Finnare
                 }
 
 
-                // Över
-                if (pointer.y  < size - 1)
-                {
-                    if (!closed.Contains(map[pointer.x, pointer.y + 1]) && map[pointer.x, pointer.y + 1].walkable)
-                    {
-                        open.Add(map[pointer.x, pointer.y + 1]);
-                        open[open.Count() - 1].parent = pointer;
-                        open[open.Count() - 1].herustic = open[open.Count() - 1].getDistance(end);
-                        open[open.Count() - 1].visited = true;
-                    }
-                }
-                // Under
-                if (pointer.y >= 1)
-                {
-                    if (!closed.Contains(map[pointer.x, pointer.y - 1]) && map[pointer.x, pointer.y - 1].walkable)
-                    {
-                        open.Add(map[pointer.x, pointer.y - 1]);
-                        open[open.Count() - 1].parent = pointer;
-                        open[open.Count() - 1].herustic = open[open.Count() - 1].getDistance(end);
-                        open[open.Count() - 1].visited = true;
-                    }
-                }
                 // Höger
                 if (pointer.x < size - 1)
                 {
-                    if (!closed.Contains(map[pointer.x + 1, pointer.y]) && map[pointer.x + 1, pointer.y].walkable)
+                    if (!closed.Contains(map[pointer.x + 1, pointer.y]) && !open.Contains(map[pointer.x + 1, pointer.y]) && map[pointer.x + 1, pointer.y].walkable)
                     {
                         open.Add(map[pointer.x + 1, pointer.y]);
                         open[open.Count() - 1].parent = pointer;
@@ -96,9 +74,31 @@ namespace S_tiger_Finnare
                 // Vänster
                 if (pointer.x >= 1)
                 {
-                    if (!closed.Contains(map[pointer.x - 1, pointer.y]) && map[pointer.x - 1, pointer.y].walkable)
+                    if (!closed.Contains(map[pointer.x - 1, pointer.y]) && !open.Contains(map[pointer.x - 1, pointer.y]) && map[pointer.x - 1, pointer.y].walkable)
                     {
                         open.Add(map[pointer.x - 1, pointer.y]);
+                        open[open.Count() - 1].parent = pointer;
+                        open[open.Count() - 1].herustic = open[open.Count() - 1].getDistance(end);
+                        open[open.Count() - 1].visited = true;
+                    }
+                }
+                // Över
+                if (pointer.y < size - 1)
+                {
+                    if (!closed.Contains(map[pointer.x, pointer.y + 1]) && !open.Contains(map[pointer.x, pointer.y + 1]) && map[pointer.x, pointer.y + 1].walkable)
+                    {
+                        open.Add(map[pointer.x, pointer.y + 1]);
+                        open[open.Count() - 1].parent = pointer;
+                        open[open.Count() - 1].herustic = open[open.Count() - 1].getDistance(end);
+                        open[open.Count() - 1].visited = true;
+                    }
+                }
+                // Under
+                if (pointer.y >= 1)
+                {
+                    if (!closed.Contains(map[pointer.x, pointer.y - 1]) && !open.Contains(map[pointer.x, pointer.y - 1]) && map[pointer.x, pointer.y - 1].walkable)
+                    {
+                        open.Add(map[pointer.x, pointer.y - 1]);
                         open[open.Count() - 1].parent = pointer;
                         open[open.Count() - 1].herustic = open[open.Count() - 1].getDistance(end);
                         open[open.Count() - 1].visited = true;
@@ -123,11 +123,95 @@ namespace S_tiger_Finnare
 
         }
 
+        public void searchAStar()
+        {
+            open.Add(start);
+            open[0].herustic = open[0].getDistanceAndDistance(end, start);
+            open[0].visited = true;
+
+            while (open.Count > 0)
+            {
+                // Hitta det lägsta distansen till end noden
+                int lowestH = Int32.MaxValue;
+                Node pointer = null;
+
+                for (int i = 0; i < open.Count(); i++)
+                {
+                    if (open[i].herustic < lowestH)
+                    {
+                        pointer = open[i];
+                        lowestH = open[i].herustic;
+                    }
+                }
+
+
+                // Höger
+                if (pointer.x < size - 1)
+                {
+                    if (!closed.Contains(map[pointer.x + 1, pointer.y]) && !open.Contains(map[pointer.x + 1, pointer.y]) && map[pointer.x + 1, pointer.y].walkable)
+                    {
+                        open.Add(map[pointer.x + 1, pointer.y]);
+                        open[open.Count() - 1].parent = pointer;
+                        open[open.Count() - 1].herustic = open[open.Count() - 1].getDistanceAndDistance(end, start);
+                        open[open.Count() - 1].visited = true;
+                    }
+                }
+                // Vänster
+                if (pointer.x >= 1)
+                {
+                    if (!closed.Contains(map[pointer.x - 1, pointer.y]) && !open.Contains(map[pointer.x - 1, pointer.y - 1]) && map[pointer.x - 1, pointer.y].walkable)
+                    {
+                        open.Add(map[pointer.x - 1, pointer.y]);
+                        open[open.Count() - 1].parent = pointer;
+                        open[open.Count() - 1].herustic = open[open.Count() - 1].getDistanceAndDistance(end, start);
+                        open[open.Count() - 1].visited = true;
+                    }
+                }
+                // Över
+                if (pointer.y < size - 1)
+                {
+                    if (!closed.Contains(map[pointer.x, pointer.y + 1]) && !open.Contains(map[pointer.x, pointer.y + 1]) && map[pointer.x, pointer.y + 1].walkable)
+                    {
+                        open.Add(map[pointer.x, pointer.y + 1]);
+                        open[open.Count() - 1].parent = pointer;
+                        open[open.Count() - 1].herustic = open[open.Count() - 1].getDistanceAndDistance(end, start);
+                        open[open.Count() - 1].visited = true;
+                    }
+                }
+                // Under
+                if (pointer.y >= 1)
+                {
+                    if (!closed.Contains(map[pointer.x, pointer.y - 1]) && !open.Contains(map[pointer.x, pointer.y - 1]) && map[pointer.x, pointer.y - 1].walkable)
+                    {
+                        open.Add(map[pointer.x, pointer.y - 1]);
+                        open[open.Count() - 1].parent = pointer;
+                        open[open.Count() - 1].herustic = open[open.Count() - 1].getDistanceAndDistance(end, start);
+                        open[open.Count() - 1].visited = true;
+                    }
+                }
+
+                closed.Add(pointer);
+                open.Remove(pointer);
+
+
+                foreach (Node n in open)
+                {
+                    if (closed.Contains(end))
+                        break;
+                }
+
+
+                if (closed.Contains(end))
+                    break;
+            }
+
+
+        }
 
         public void generateMap()
         {
             // Skapar en slumpmässig map
-            Random rnd = new Random();
+            /*Random rnd = new Random();
             for (int i = 0; i < size; i++)
             {
                 for (int k = 0; k < size; k++)
@@ -136,9 +220,49 @@ namespace S_tiger_Finnare
                     if (value <= 1) map[k, i] = new Node(k,i, true, '.');   // Skapar en node som är walkable
                     else map[k, i] = new Node(k, i, false, '#');            // Skapar en node som INTE är walkable 
                 }
-            }
+            }*/
 
-            generateStartEnd();
+            // Rad 1 och 2
+            for (int i = 0; i < 15; i++)
+                map[i, 0] = new Node(i, 0, true, '.');
+            for (int i = 0; i < 15; i++)
+                map[i, 1] = new Node(i, 1, true, '.');
+            // Rad 3
+            for (int i = 0; i < 5; i++)
+                map[i, 2] = new Node(i, 2, true, '.');
+            for (int i = 5; i < 13; i++)
+                map[i, 2] = new Node(i, 2, false, '#');
+            map[13, 2] = new Node(13, 2, true, '.'); map[14, 2] = new Node(14, 2, true, '.');
+            // Rad 4 till 12
+            for (int k = 3; k < 12; k++) {
+                for (int i = 0; i < 13; i++) {
+                    if (i < 12 || i > 12)
+                        map[i, k] = new Node(i, k, true, '.');
+                    else
+                        map[i, k] = new Node(i, k, false, '#');
+                }
+                map[13, k] = new Node(13, k, true, '.'); map[14, k] = new Node(14, k, true, '.');
+            }
+            // Rad 13
+            for (int i = 0; i < 2; i++)
+                map[i, 12] = new Node(i, 12, true, '.');
+            for (int i = 2; i < 13; i++)
+                map[i, 12] = new Node(i, 12, false, '#');
+            map[13, 12] = new Node(13, 12, true, '.'); map[14, 12] = new Node(14, 12, true, '.');
+            // Rad 14 och 15
+            for (int i = 0; i < 15; i++)
+                map[i, 13] = new Node(i, 13, true, '.');
+            for (int i = 0; i < 15; i++)
+                map[i, 14] = new Node(i, 14, true, '.');
+                
+
+            //generateStartEnd();
+
+            start = new Node(0, 12, true, 'x');
+            end = new Node(14, 1, true, 'y');
+
+            map[0, 12] = start;
+            map[14, 1] = end;
         }
 
         private void generateStartEnd()
@@ -171,7 +295,6 @@ namespace S_tiger_Finnare
 
         public void printMap()
         {
-            
             // Printar varje node i mappen
             for (int i = 0; i < size; i++)
             {
@@ -196,5 +319,11 @@ namespace S_tiger_Finnare
             }
         }
 
+        public void reset()
+        {
+            open.Clear();
+            closed.Clear();
+
+        }
     }
 }
