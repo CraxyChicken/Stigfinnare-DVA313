@@ -9,6 +9,7 @@ namespace S_tiger_Finnare
 {
     class Map
     {
+
         public int size;
 
         public Node start;
@@ -107,16 +108,8 @@ namespace S_tiger_Finnare
 
                 closed.Add(pointer);
                 open.Remove(pointer);
-                
 
-                foreach (Node n in open)
-                {
-                    if (n.herustic == 0)
-                        break;
-                }
-
-
-                if(closed.Contains(end)) 
+                if (closed.Contains(end))
                     break;
             }
 
@@ -159,7 +152,7 @@ namespace S_tiger_Finnare
                 // Vänster
                 if (pointer.x >= 1)
                 {
-                    if (!closed.Contains(map[pointer.x - 1, pointer.y]) && !open.Contains(map[pointer.x - 1, pointer.y - 1]) && map[pointer.x - 1, pointer.y].walkable)
+                    if (!closed.Contains(map[pointer.x - 1, pointer.y]) && !open.Contains(map[pointer.x - 1, pointer.y]) && map[pointer.x - 1, pointer.y].walkable)
                     {
                         open.Add(map[pointer.x - 1, pointer.y]);
                         open[open.Count() - 1].parent = pointer;
@@ -193,14 +186,6 @@ namespace S_tiger_Finnare
                 closed.Add(pointer);
                 open.Remove(pointer);
 
-
-                foreach (Node n in open)
-                {
-                    if (closed.Contains(end))
-                        break;
-                }
-
-
                 if (closed.Contains(end))
                     break;
             }
@@ -211,7 +196,7 @@ namespace S_tiger_Finnare
         public void generateMap()
         {
             // Skapar en slumpmässig map
-            /*Random rnd = new Random();
+            Random rnd = new Random();
             for (int i = 0; i < size; i++)
             {
                 for (int k = 0; k < size; k++)
@@ -220,9 +205,9 @@ namespace S_tiger_Finnare
                     if (value <= 1) map[k, i] = new Node(k,i, true, '.');   // Skapar en node som är walkable
                     else map[k, i] = new Node(k, i, false, '#');            // Skapar en node som INTE är walkable 
                 }
-            }*/
+            }
 
-            // Rad 1 och 2
+            /* Rad 1 och 2
             for (int i = 0; i < 15; i++)
                 map[i, 0] = new Node(i, 0, true, '.');
             for (int i = 0; i < 15; i++)
@@ -256,13 +241,15 @@ namespace S_tiger_Finnare
                 map[i, 14] = new Node(i, 14, true, '.');
                 
 
-            //generateStartEnd();
+            //
 
             start = new Node(0, 12, true, 'x');
             end = new Node(14, 1, true, 'y');
 
             map[0, 12] = start;
-            map[14, 1] = end;
+            map[14, 1] = end;*/
+
+            generateStartEnd();
         }
 
         private void generateStartEnd()
@@ -291,6 +278,25 @@ namespace S_tiger_Finnare
                 pointer = pointer.parent;
             }
             return false;
+        }
+
+        public int getPathLength()
+        {
+            int pathLength = 0;
+            Node pointer = end;
+            while (pointer.parent != null)
+            {
+                if (pointer == start)
+                    break;
+                pathLength++;
+                pointer = pointer.parent;
+            }
+            return pathLength;
+        }
+
+        public int getSearchedNodes()
+        {
+            return closed.Count();
         }
 
         public void printMap()
@@ -323,7 +329,6 @@ namespace S_tiger_Finnare
         {
             open.Clear();
             closed.Clear();
-
         }
     }
 }
